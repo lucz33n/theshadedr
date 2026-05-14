@@ -514,6 +514,28 @@ section {
 	background: var(--color-primary-light)
 }
 
+/* Cycling image fade animation */
+#cycling-image-wrapper {
+	position: relative;
+}
+
+.cycling-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16/9;
+	object-fit: cover;
+	background: var(--color-primary-light);
+	opacity: 1;
+	transition: opacity 0.8s ease-in-out;
+}
+
+.cycling-image.fade-out {
+	opacity: 0;
+}
+
 .service-body {
 	padding: var(--space-6)
 }
