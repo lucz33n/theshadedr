@@ -33,6 +33,7 @@
           </ul>
         </nav>
         <div class="header-actions">
+          <button class="lock-toggle" id="lock-toggle" aria-label="Admin Login"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
           <button class="theme-toggle" data-theme-toggle aria-label="Switch theme"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
           <a href="tel:9736502289" class="btn" style="background:var(--color-accent);color:#0f1923">Call Now</a>
           <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
@@ -129,7 +130,7 @@
           <p class="section-sub">Drop off your shades at any of our Northern New Jersey locations, or contact us for in-home service.</p>
         </div>
         <div class="locations-grid">
-          <article class="location-card featured reveal"><div class="location-badge">Main Office</div><h3>Montville / Towaco</h3><p class="location-addr">Montville, NJ 07045</p><p class="location-note">Our main office and primary drop-off point.</p><a class="location-link" target="_blank" rel="noopener noreferrer" href="https://maps.apple.com/?q=Montville,NJ+07045">Get Directions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></article>
+          <article class="location-card featured reveal"><div class="location-badge">Main Office</div><h3>Montville / Towaco</h3><p class="location-addr">Montville, NJ 07045</p><p class="location-note">Our main office and primary drop-off point.</p><a class="location-link" target="_blank" rel="noopener noreferrer" href="https://maps.apple/r/.Mgz3x1cvQb2Uh">Get Directions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></article>
           <article class="location-card reveal"><h3>Paramus</h3><p class="location-addr">Paramus, NJ</p><p class="location-note">Convenient Bergen County drop-off option.</p><a class="location-link" target="_blank" rel="noopener noreferrer" href="https://maps.apple.com/?q=Paramus,NJ">Get Directions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></article>
           <article class="location-card reveal"><h3>Chester</h3><p class="location-addr">Chester, NJ</p><p class="location-note">Serving customers across Morris County.</p><a class="location-link" target="_blank" rel="noopener noreferrer" href="https://maps.apple.com/?q=Chester,NJ">Get Directions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></article>
           <article class="location-card reveal"><h3>Fairfield</h3><p class="location-addr">Fairfield, NJ</p><p class="location-note">Easy drop-off option in Essex County.</p><a class="location-link" target="_blank" rel="noopener noreferrer" href="https://maps.apple.com/?q=Fairfield,NJ">Get Directions <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></article>
@@ -174,10 +175,17 @@
           <div class="contact-form-wrap reveal">
             <form class="contact-form">
               <h3>Send a Message</h3>
-              <div class="form-group"><label for="name">Full Name</label><input id="name" name="name" type="text" placeholder="Jane Smith"></div>
-              <div class="form-group"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="jane@example.com"></div>
-              <div class="form-group"><label for="service">Service Needed</label><select id="service" name="service"><option value="">Select a service…</option><option>Repair &amp; Maintenance</option><option>Installation &amp; Measuring</option><option>Free Consultation</option><option>Other</option></select></div>
-              <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="5" placeholder="Describe your project or repair need…"></textarea></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                <div style="display:grid;gap:1rem">
+                  <div class="form-group"><label for="firstName">First name <span style="color:var(--color-accent)">(Required)</span></label><input id="firstName" name="firstName" type="text" placeholder="Enter your first name" required></div>
+                  <div class="form-group"><label for="lastName">Last name <span style="color:var(--color-accent)">(Required)</span></label><input id="lastName" name="lastName" type="text" placeholder="Enter your last name" required></div>
+                  <div class="form-group"><label for="phone">Phone <span style="color:var(--color-accent)">(Required)</span></label><input id="phone" name="phone" type="tel" placeholder="Enter your phone number" required></div>
+                </div>
+                <fieldset style="display:grid;gap:.45rem;margin-bottom:0;border:none;padding:0"><legend style="font-weight:700;margin-bottom:.65rem;padding:0">Product Brand <span style="color:var(--color-accent)">(Required)</span></legend><div style="display:grid;gap:.6rem"><div style="padding:.9rem 1rem;border-radius:.9rem;border:1px solid var(--color-border);background:var(--color-surface-2)"><label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:400;margin:0"><input type="radio" name="brand" value="Hunter Douglas" style="margin:0"> Hunter Douglas</label></div><div style="padding:.9rem 1rem;border-radius:.9rem;border:1px solid var(--color-border);background:var(--color-surface-2)"><label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:400;margin:0"><input type="radio" name="brand" value="Graber" style="margin:0"> Graber</label></div><div style="padding:.9rem 1rem;border-radius:.9rem;border:1px solid var(--color-border);background:var(--color-surface-2)"><label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:400;margin:0"><input type="radio" name="brand" value="Levolor" style="margin:0"> Levolor</label></div><div style="padding:.9rem 1rem;border-radius:.9rem;border:1px solid var(--color-border);background:var(--color-surface-2)"><label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:400;margin:0"><input type="radio" name="brand" value="Custom Workroom" style="margin:0"> Custom Workroom</label></div><div style="padding:.9rem 1rem;border-radius:.9rem;border:1px solid var(--color-border);background:var(--color-surface-2)"><label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-weight:400;margin:0"><input type="radio" name="brand" value="Not sure/Other" style="margin:0"> Not sure/Other</label></div></div></fieldset>
+              </div>
+              <div class="form-group"><label for="age">Product Age <span style="color:var(--color-accent)">(Required)</span></label><select id="age" name="age" required><option value="">Choose one</option><option>Under 1 year</option><option>Under 5 years</option><option>5 - 10 years</option><option>10 + years</option><option>Not sure</option></select></div>
+              <div class="form-group"><label for="email">Email <span style="color:var(--color-accent)">(Required)</span><p style="font-size:var(--text-xs);color:var(--color-text-muted);margin:-0.65rem 0 .75rem 0">Needed for confirmation only</p></label><input id="email" name="email" type="email" placeholder="Enter your email" required></div>
+              <div class="form-group"><label for="issue">Brief Description of Issue <span style="color:var(--color-accent)">(Required)</span></label><textarea id="issue" name="issue" rows="5" placeholder="Tell us what's going on…" required></textarea></div>
               <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
             </form>
           </div>
@@ -204,7 +212,61 @@
     </div>
   </footer>
 
+  <!-- ============ PASSWORD MODAL ============ -->
+  <div class="modal-overlay" id="password-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close modal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <div class="modal-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h3>Admin Access</h3>
+      <p>Enter password to access orders</p>
+      <input type="password" id="admin-password" placeholder="Enter password" autocomplete="off">
+      <button class="btn btn-primary" id="password-submit" style="width:100%">Unlock</button>
+      <p class="password-error" id="password-error">Incorrect password</p>
+    </div>
+  </div>
+
   <!-- ============ SCRIPTS ============ -->
   <script src="script.js" defer></script>
+  <script>
+    (function() {
+      const lockBtn = document.getElementById('lock-toggle');
+      const modal = document.getElementById('password-modal');
+      const closeBtn = document.getElementById('modal-close');
+      const passwordInput = document.getElementById('admin-password');
+      const submitBtn = document.getElementById('password-submit');
+      const errorMsg = document.getElementById('password-error');
+
+      lockBtn && lockBtn.addEventListener('click', () => {
+        modal.classList.add('open');
+        passwordInput.value = '';
+        errorMsg.classList.remove('show');
+        passwordInput.focus();
+      });
+
+      closeBtn && closeBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+      });
+
+      modal && modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('open');
+      });
+
+      function checkPassword() {
+        if (passwordInput.value === 'avenueboys') {
+          modal.classList.remove('open');
+          window.location.href = 'orders.html';
+        } else {
+          errorMsg.classList.add('show');
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      }
+
+      submitBtn && submitBtn.addEventListener('click', checkPassword);
+      passwordInput && passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders | The Shade Doctor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ============ ORDERS HEADER ============ -->
+  <header class="orders-header">
+    <div class="container">
+      <a href="index.html" class="back-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Back to Site</a>
+      <h1>Order Tracking</h1>
+    </div>
+  </header>
+
+  <!-- ============ ORDERS CONTENT ============ -->
+  <main class="orders-page">
+    <div class="orders-container">
+      <div class="container">
+        <div class="orders-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Product Brand</th>
+                <th>Phone</th>
+                <th>Product Age</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-order-id="ORD-001">
+                <td><span class="order-number">ORD-001</span></td>
+                <td>Michael</td>
+                <td>Johnson</td>
+                <td>Hunter Douglas</td>
+                <td>973-555-0123</td>
+                <td>5 - 10 years</td>
+                <td><span class="priority-dot none"></span></td>
+                <td><span class="status-badge pending">Pending Repair</span></td>
+                <td><button class="note-btn" data-note="The lift cord snapped when trying to raise the shade. The mechanism seems intact but the cord needs full replacement. Customer mentioned it's been like this for 2 weeks."><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Note</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Order Actions Panel -->
+        <div class="order-actions" id="order-actions">
+          <h3>Update Order: <span id="selected-order-num">ORD-001</span></h3>
+          <div class="action-row">
+            <div class="action-group">
+              <label>Priority</label>
+              <div class="priority-options">
+                <button class="priority-btn" data-priority="none">None</button>
+                <button class="priority-btn" data-priority="green">Low</button>
+                <button class="priority-btn" data-priority="yellow">Medium</button>
+                <button class="priority-btn" data-priority="red">High</button>
+              </div>
+            </div>
+            <div class="action-group">
+              <label>Status</label>
+              <div class="status-options">
+                <button class="status-btn" data-status="pending">Pending Repair</button>
+                <button class="status-btn" data-status="repairing">Currently Repairing</button>
+                <button class="status-btn" data-status="repaired">Repaired</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ NOTE MODAL ============ -->
+  <div class="modal-overlay notes-modal" id="note-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="note-modal-close" aria-label="Close modal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h3>Order Notes</h3>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: 1rem;">Customer description:</p>
+      <div class="order-note" id="note-content"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const rows = document.querySelectorAll('.orders-table tbody tr');
+      const actionsPanel = document.getElementById('order-actions');
+      const selectedOrderNum = document.getElementById('selected-order-num');
+      const priorityBtns = document.querySelectorAll('.priority-btn');
+      const statusBtns = document.querySelectorAll('.status-btn');
+      const noteModal = document.getElementById('note-modal');
+      const noteContent = document.getElementById('note-content');
+      const noteModalClose = document.getElementById('note-modal-close');
+      let currentRow = null;
+
+      // Row click handler
+      rows.forEach(row => {
+        row.addEventListener('click', () => {
+          rows.forEach(r => r.classList.remove('selected'));
+          row.classList.add('selected');
+          currentRow = row;
+          const orderNum = row.querySelector('.order-number').textContent;
+          selectedOrderNum.textContent = orderNum;
+          actionsPanel.classList.add('visible');
+
+          // Reset buttons based on current row state
+          const currentPriority = row.querySelector('.priority-dot').classList.contains('green') ? 'green' :
+                                  row.querySelector('.priority-dot').classList.contains('yellow') ? 'yellow' :
+                                  row.querySelector('.priority-dot').classList.contains('red') ? 'red' : 'none';
+          const currentStatus = row.querySelector('.status-badge').classList.contains('repaired') ? 'repaired' :
+                                row.querySelector('.status-badge').classList.contains('repairing') ? 'repairing' : 'pending';
+
+          priorityBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.priority === currentPriority) btn.classList.add('active', currentPriority);
+          });
+
+          statusBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.status === currentStatus) btn.classList.add('active');
+          });
+        });
+      });
+
+      // Priority buttons
+      priorityBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (!currentRow) return;
+          priorityBtns.forEach(b => b.classList.remove('active', 'green', 'yellow', 'red'));
+          btn.classList.add('active', btn.dataset.priority);
+          const dot = currentRow.querySelector('.priority-dot');
+          dot.className = 'priority-dot ' + (btn.dataset.priority === 'none' ? '' : btn.dataset.priority);
+        });
+      });
+
+      // Status buttons
+      statusBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (!currentRow) return;
+          statusBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const badge = currentRow.querySelector('.status-badge');
+          badge.className = 'status-badge ' + btn.dataset.status;
+          badge.textContent = btn.dataset.status === 'pending' ? 'Pending Repair' :
+                              btn.dataset.status === 'repairing' ? 'Currently Repairing' : 'Repaired';
+        });
+      });
+
+      // Note buttons
+      document.querySelectorAll('.note-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const note = btn.dataset.note;
+          noteContent.textContent = note;
+          noteModal.classList.add('open');
+        });
+      });
+
+      noteModalClose && noteModalClose.addEventListener('click', () => {
+        noteModal.classList.remove('open');
+      });
+
+      noteModal && noteModal.addEventListener('click', (e) => {
+        if (e.target === noteModal) noteModal.classList.remove('open');
+      });
+    })();
+  </script>
+</body>
+</html>
