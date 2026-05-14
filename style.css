@@ -517,6 +517,11 @@ section {
 /* Cycling image fade animation */
 #cycling-image-wrapper {
 	position: relative;
+	width: 100%;
+	aspect-ratio: 16/9;
+	overflow: hidden;
+	border-radius: var(--radius-2xl);
+	box-shadow: var(--shadow-sm);
 }
 
 .cycling-image {
@@ -525,7 +530,6 @@ section {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	aspect-ratio: 16/9;
 	object-fit: cover;
 	background: var(--color-primary-light);
 	opacity: 1;

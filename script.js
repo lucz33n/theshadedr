@@ -66,6 +66,21 @@
         threshold: .12
     });
     document.querySelectorAll('.reveal').forEach(el => rev.observe(el));
+    
+    // Cycling image fade animation
+    const wrapper = document.getElementById('cycling-image-wrapper');
+    if (wrapper) {
+        const images = wrapper.querySelectorAll('.cycling-image');
+        let currentIndex = 0;
+        if (images.length > 1) {
+            setInterval(() => {
+                images[currentIndex].classList.remove('fade-out');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('fade-out');
+            }, 3000);
+        }
+    }
+    
     const form = document.querySelector('.contact-form');
     if (form) {
         form.addEventListener('submit', e => {
