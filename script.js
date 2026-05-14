@@ -95,4 +95,43 @@
             }, 2200);
         });
     }
+
+    // Password modal functionality
+    const lockBtn = document.getElementById('lock-toggle');
+    const modal = document.getElementById('password-modal');
+    const closeBtn = document.getElementById('modal-close');
+    const passwordInput = document.getElementById('admin-password');
+    const submitBtn = document.getElementById('password-submit');
+    const errorMsg = document.getElementById('password-error');
+
+    lockBtn && lockBtn.addEventListener('click', () => {
+        modal.classList.add('open');
+        passwordInput.value = '';
+        errorMsg.classList.remove('show');
+        passwordInput.focus();
+    });
+
+    closeBtn && closeBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+    });
+
+    modal && modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('open');
+    });
+
+    function checkPassword() {
+        if (passwordInput.value === 'avenueboys') {
+            modal.classList.remove('open');
+            window.location.href = 'orders.html';
+        } else {
+            errorMsg.classList.add('show');
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    }
+
+    submitBtn && submitBtn.addEventListener('click', checkPassword);
+    passwordInput && passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+    });
 })();

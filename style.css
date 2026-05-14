@@ -1011,6 +1011,10 @@ footer {
 	opacity: 1
 }
 
+#password-submit {
+	width: 100%
+}
+
 /* ---------- ORDERS PAGE ---------- */
 .orders-page {
 	min-height: 100vh;
