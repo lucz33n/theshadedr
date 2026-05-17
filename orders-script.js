@@ -59,6 +59,16 @@
             badge.className = 'status-badge ' + btn.dataset.status;
             badge.textContent = btn.dataset.status === 'pending' ? 'Pending Repair' :
                                 btn.dataset.status === 'repairing' ? 'Currently Repairing' : 'Repaired';
+
+            // Show email prompt when status is changed to repaired
+            if (btn.dataset.status === 'repaired') {
+                const emailCustomer = confirm('Do you want to email the customer that the order is ready?');
+                if (emailCustomer) {
+                    alert('customer email sent!');
+                } else {
+                    alert('customer has not been notified');
+                }
+            }
         });
     });
 
