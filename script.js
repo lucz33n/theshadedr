@@ -94,6 +94,21 @@
                 b.disabled = false;
             }, 2200);
         });
+
+        // Show/hide order number field based on brand selection
+        const brandSelects = form.querySelectorAll('.brand-select');
+        const orderNumberGroup = document.getElementById('order-number-group');
+        brandSelects.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Hunter Douglas' || radio.value === 'Graber') {
+                    orderNumberGroup.style.display = 'grid';
+                } else {
+                    orderNumberGroup.style.display = 'none';
+                    const orderInput = document.getElementById('orderNumber');
+                    if (orderInput) orderInput.value = '';
+                }
+            });
+        });
     }
 
     // Password modal functionality
