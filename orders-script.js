@@ -26,7 +26,7 @@
             const currentStatus = row.querySelector('.status-badge').classList.contains('repaired') ? 'repaired' :
                                   row.querySelector('.status-badge').classList.contains('repairing') ? 'repairing' : 'pending';
 
-            priorityBtns.forEach(btn => {
+            priorityBtns.forEach(btn => {1  
                 btn.classList.remove('active');
                 if (btn.dataset.priority === currentPriority) btn.classList.add('active', currentPriority);
             });
